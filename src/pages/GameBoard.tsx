@@ -94,6 +94,7 @@ const GameBoard: React.FC = () => {
         {stopped && (
           <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center text-white">
             <h1 className='text-3xl font-bold'>Game Over</h1>
+            <h3> {score == bestScore ? "congratulations! New Best Score!" : "You scored less than your best. Keep trying!"} </h3>
             <p>Your score: {score}</p>
             <p>Best score: {bestScore}</p>
             <h2 onClick={()=> setReset(true)} className='text-xl py-2'><IoReload /></h2>
