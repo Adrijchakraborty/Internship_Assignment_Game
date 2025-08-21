@@ -13,7 +13,7 @@ interface ObstacleProps {
 
 const Obstacle: React.FC<ObstacleProps> = ({ stopped, reset, setReset }) => {
   const [obstacles, setObstacles] = useState<ObstacleType[]>([]);
-  const refId = useRef<number | null>(null);
+  const rafId = useRef<number | null>(null);
   const lastTime = useRef<number | null>(null);
   const vx = 200;
 
@@ -42,20 +42,20 @@ const Obstacle: React.FC<ObstacleProps> = ({ stopped, reset, setReset }) => {
           .filter((obs) => obs.x < window.innerWidth)
       );
 
-      refId.current = requestAnimationFrame(move);
+      rafId.current = requestAnimationFrame(move);
     };
 
-    refId.current = requestAnimationFrame(move);
+    rafId.current = requestAnimationFrame(move);
 
     return () => {
-      if (refId.current) cancelAnimationFrame(refId.current);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
     };
   }, [stopped]);
 
   //reset to initial state
   useEffect(() => {
     const resetAll = () => {
-      refId.current = null;
+      rafId.current = null;
       setObstacles([]);
       lastTime.current = null;
 
@@ -71,9 +71,7 @@ const Obstacle: React.FC<ObstacleProps> = ({ stopped, reset, setReset }) => {
           key={obs.id}
           className="obstacle absolute bottom-0 w-4 h-12 bg-red-500"
           style={{ transform: `translateX(-${obs.x}px)` }}
-        >
-          O
-        </span>
+        >        </span>
       ))}
     </div>
   )

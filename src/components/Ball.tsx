@@ -96,7 +96,7 @@ const Ball: React.FC<BallProps> = ({ stopped, reset, setReset }) => {
 
   return (
     <span id='ball' className='rounded-full bg-amber-600 w-12 h-12 flex justify-center items-center ml-10'>
-      C
+
     </span>
   )
 }
